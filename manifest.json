@@ -1,5 +1,5 @@
 {
-    "name" : "min-car",
+    "name" : "min-carbluetooth",
     "appid" : "",
     "description" : "",
     "versionName" : "1.0.0",
@@ -50,11 +50,14 @@
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "",
+        "appid" : "wxf8346c826fc02a10",
         "setting" : {
-            "urlCheck" : false
+            "urlCheck" : false,
+            "postcss" : true,
+            "minified" : true
         },
-        "usingComponents" : true
+        "usingComponents" : true,
+        "permission" : {}
     },
     "mp-alipay" : {
         "usingComponents" : true
