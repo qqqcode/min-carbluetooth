@@ -3,15 +3,43 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "芳香蓝牙系统"
+				"navigationBarTitleText": "香薰等离子舒适系统"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/setup/setup",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "芳香蓝牙系统",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "香薰等离子舒适系统",
+		"navigationBarBackgroundColor": "#1E1F24",
+		"backgroundColor": "#25262B"
+		// "backgroundTextStyle":"dark",
+		// "enablePullDownRefresh":true
 	},
-	"uniIdRouter": {}
+	"uniIdRouter": {},
+	"tabBar": {
+		"color": "#898989",
+		"selectedColor": "#FFFFFF",
+		"borderStyle": "black",
+		"backgroundColor": "#15161A",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/images/首页icon-暗.png",
+			"selectedIconPath": "static/images/首页icon-亮.png",
+			"text": "主页"
+		}, {
+			"pagePath": "pages/setup/setup",
+			"iconPath": "static/images/设置icon-暗.png",
+			"selectedIconPath": "static/images/设置icon-亮.png",
+			"text": "设置"
+		}]
+	}
 }
