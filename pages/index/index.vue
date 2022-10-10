@@ -2,7 +2,19 @@
 	<view class="content">
 		<view class="content-main">
 			<view class="bluetooth" @click="initBlue">
-				<img :src="blueConImg" alt="">
+				<image :src="blueConImg" class="bluetooth-con" mode=""></image>
+				<!-- <view class="bluetooth-con">
+					<image class="bluetooth-icon" src="@/static/images/设置icon-暗.png" mode=""></image>
+					<view class="bluetooth-p">
+						蓝牙未连接
+					</view>
+				</view> -->
+			</view>
+			<view class="main-content">
+				<view class="circle">
+					<view class="circle-left ab"></view>
+					<view class="circle-right ab"></view>
+				</view>
 			</view>
 			<view class="text-area">
 				<text class="title">{{title}}</text>
@@ -41,15 +53,18 @@
 		onMounted,
 		watch
 	} from 'vue';
+	
 	const title = ref("Hello World");
-	const imgUrl = ref("../../static/images/bg.jpeg");
-	const blueConnect = ref("蓝牙未连接！");
 	const blueStatus = ref(-1);
 	const blueDeviceList = ref([])
 	const dialogshow = ref(false);
 
 	const deviceId = ref('')
-	const blueConImg = ref('../../static/images/蓝牙未链接.png')
+	const blueConImgList = [
+		"../../static/images/bluetoothNotCon.png",
+		"../../static/images/bluetoothCon.png"
+	]
+	const blueConImg = ref()
 
 	//连接蓝牙
 	const connectBlue = (item) => {
@@ -111,6 +126,7 @@
 
 	//初始化蓝牙，打开蓝牙
 	const initBlue = () => {
+		blueConImg.value = blueConImg.value==blueConImgList[1]?blueConImgList[0]:blueConImgList[1];
 		uni.openBluetoothAdapter({
 			success(res) {
 				console.log('初始化蓝牙成功')
@@ -255,51 +271,84 @@
 	}
 
 	watch(blueStatus, (n, o) => {
-		if (n == -1) {
-			blueConnect.value = "蓝牙未连接！";
-		} else if (n == 0) {
-			blueConnect.value = "初始化蓝牙成功，开始寻找设备";
-		} else if (n == 1) {
-			blueConnect.value = "蓝牙连接成功"
-		}
 	})
 
 	onMounted(() => {
-
+		blueConImg.value = blueConImgList[0];
 	})
 </script>
 
 <style lang="scss">
 	.content {
-		background-color: #1E1F24;
+		// background-color: #1E1F24;
+		background-color: rgb(28 29 34);
 		.content-main {
-			height: 100vh;
+			// height: 100vh;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
 			background-size: cover;
 			background-color: #1D1E24;
-			// background-color: #4F4F5B;
-			// background: url('@/static/images/中层背景.png');
+			// background-color: rgb(35 36 44);
 			border-top-left-radius: 50rpx;
 			border-top-right-radius: 50rpx;
 			border-top: 5rpx solid #4F4F5B;
 			position: relative;
 			
 			.bluetooth {
-				width: 50rpx;
-				font-size: 1.2rem;
-				padding: 10rpx 0rpx;
+				// padding: 10rpx 0rpx;
 				color: white;
 				position: absolute;
-				left: 20rpx;
-				top: 10rpx;
-				
+				left: 0rpx;
+				top: 0rpx;
+				.bluetooth-con {
+					width: 250rpx;
+					height: 100rpx;
+					.bluetooth-icon {
+						padding: 5rpx;
+						width: 50rpx;
+						height: 50rpx;
+					}
+					.bluetooth-p {
+						font-size: 1rem;
+						padding: 5rpx;
+						height: 50rpx;
+						line-height: 50rpx;
+						text-align: center;
+					}
+				}
 			}
 
-			.image-change {
-				width: 100%;
+			.main-content {
+				margin-top: 60rpx;
+				.circle {
+					width: 500rpx;
+					height: 500rpx;
+					position: relative;
+					border-radius: 50%;
+					// left: 200rpx;
+					// top: 50rpx;
+					box-shadow: inset 0 0 0 5rpx #54c4fd;
+					.ab {
+						position: absolute;
+						left: 0;
+						right: 0;
+						top: 0;
+						bottom: 0;
+						margin: auto;
+					}
+					.circle-left {
+						border: 5rpx solid #546063;
+						border-radius: 50%;
+						clip: rect(0,250rpx,500rpx,0);
+					}
+					.circle-right {
+						border: 5rpx solid #546063;
+						border-radius: 50%;
+						clip: rect(0,500rpx,500rpx,250rpx);
+					}
+				}
 			}
 
 			.text-area {
